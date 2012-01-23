@@ -2,7 +2,7 @@
 
 /*
  * This class was an attempt to learn PHP by producing an object-oriented array wrapper that felt like Ruby's Array class.
- * As per the comments for the bubble_sort_inplace() method, I lost interest because PHP sucks balls in too many ways.
+ * As per the comments for the sort_by() method, I lost interest because PHP sucks balls in too many ways.
  */
 class Collection {
 
