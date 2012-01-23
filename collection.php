@@ -104,9 +104,19 @@ class Collection {
 		}
 	}
 
+	# This is the point at which I lost interest in learning PHP.  Not only is PHP ugly and inconsistent, but it's dog slow
+	# and very hard to use efficiently.  When people ask "Why is Ruby so much slower than PHP?" they are asking the wrong
+	# question. They should be asking "Why is Ruby so much slower than C?" for which there are reasonable and palatable
+	# answers.  Many of PHP's C functions will be faster than Ruby's Ruby functions, but the speed of library functions
+	# that don't do what I want means nothing to me.  What matters to me is how fast PHP is; when I want to write C code,
+	# I'll write C code.
+	#
+	# I've learned enough about the language to dive into someone else's code if I need to. But I'd rather blow goats than
+	# do this nonsense for money.
+	#
 	public function sort_by($block, $inplace = false) {
 		if ($inplace) {
-			$this->bubble_sort_inplace($block);
+			usort($this->array, $block);
 			return $this;
 		} else {
 			$sorted = new Collection($this->array);
@@ -126,31 +136,6 @@ class Collection {
 	private function pad($count, $o = null) {
 		for ($i = 0; $i < $count; $i++) {
 			$this->array[] = null;
-		}
-	}
-
-	# This is the point at which I lost interest in learning PHP.  Not only is PHP ugly and inconsistent, but it's dog slow
-	# and very hard to use efficiently.  The PHP quicksort implementation at wikibooks.org pisses memory, and writing your
-	# own quicksort or bubble sort in PHP is insanely slow compared with the C implementations in PHP itself (which are
-	# themselves about 10 times slower than C implementations in C programs).  When people ask "Why is Ruby so much slower
-	# than PHP?" they are asking the wrong question. They should be asking "Why is Ruby so much slower than C?" for which
-	# there are reasonable and palatable answers.  Many of PHP's C functions will be faster than Ruby's Ruby functions, but
-	# the speed of library functions that don't do what I want means nothing to me.  What matters to me is how fast PHP is;
-	# when I want to write C code, I'll write C code.
-	#
-	# I've learned enough about the language to dive into someone else's code if I need to. But I'd rather blow a goat than
-	# do this nonsense for money.
-	#
-	private function bubble_sort_inplace($block) {
-		$size = sizeof($this->array);
-		for ($i = 0; $i < $size; $i++) {
-			for ($j = 0; $j < $size; $j++)  {
-				if ($block($this->array[$i], $this->array[$j]) < 0) {
-					$swap = $this->array[$i];
-					$this->array[$i] = $this->array[$j];
-					$this->array[$j] = $swap;
-				}
-			}
 		}
 	}
 
